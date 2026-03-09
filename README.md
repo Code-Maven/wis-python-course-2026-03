@@ -163,10 +163,5 @@ There is no need to install anything up front. We'll do that during the lectures
 
 Login to [Moodle](https://feinberg.weizmann.ac.il/) and you should be able to see the video recordings on the right hand side.
 
-## Git and GitHub
-
-* [Creating a website on GitHub Pages using Markdown](https://git.code-maven.com/git-maven/creating-a-website-on-github-pages-using-markdown)
-* [Using Git on Windows in VS Code](https://git.code-maven.com/git-maven/using-git-on-windows-in-vs-code).
-
-
+## [Reports and assignment](DAYS.md)
 
