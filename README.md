@@ -6,7 +6,8 @@ Course number: 20263062
 * Feinberg [Moodle](https://feinberg.weizmann.ac.il/)
 
 * Location:
-    * The rest in Feinberg Building Class C.
+    * First session in Zoom
+    * Feinberg Building Class C.
 
 ## [Students](STUDENTS.md)
 
