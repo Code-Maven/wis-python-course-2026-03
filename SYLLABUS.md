@@ -71,6 +71,7 @@ and **not** in the order they are mentioned here.
     * Lists (list)
     * Tuples (tuple)
     * Dictionaries (dict)
+    * Sets (set)
 
 * Input/Output - I/O
     * keyboard
@@ -84,12 +85,18 @@ and **not** in the order they are mentioned here.
     * for in
     * while
     * break, continue
+    * return
     * exit
+
 
 * The Python standard library
 
+* 3rd party libraries [pypi](https://pypi.org/)
+    * pip
+    * uv
+
 * Modularization and code-reuse
-    * Functions
+    * Functions  (def, return)
     * Modules
 
 * Error handling.
