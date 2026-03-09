@@ -10,8 +10,8 @@ Course number: 20263062
 
 ## Students
 
-| Home page | Repo | Assignments | Project | Status |
-| --------- | ---- | ----------- | ------- | ------ |
+| Home page | Repo | Assignments | Lab     | Project |
+| --------- | ---- | ----------- | ------- | ------- |
 <!--
 | []()                | [repo]()                     | [repo]() |  |  |
 -->
@@ -70,7 +70,7 @@ First you will need to submit a proposal for the project and when it is accepted
 The project should be something that is useful for your studies or at least it is fun for you to make.
 Ask in the lab where you work what needs are there that you might implement as your final project.
 You can get inspiration from the projects [listed here](https://code-maven.com/programming-bootcamp-for-scientists)
-and the preojects from the previous semesters:
+and the projects from the previous semesters:
 * [2023 autumn semester](https://github.com/szabgab/wis-python-bootcamp-2023-12)
 * [2024 spring semester](https://github.com/szabgab/wis-python-course-2024-04)
 * [2024 autumn semester](https://github.com/szabgab/wis-python-course-2024-11)
@@ -78,8 +78,7 @@ and the preojects from the previous semesters:
 * [2025 autumn semester](https://github.com/code-Maven/wis-python-course-2025-10)
 
 The idea of the project is that you write something that is going to be useful for you beyond the course. e.g. There is some manual work in your lab and this project will automate it.
-It can be also a tool to help you with your research. etc. It can also be useful in your private life. e.g. we had projects trying to register for visa applications at the USA embasy
-and we also had games.
+It can be also a tool to help you with your research. etc. It can also be useful in your private life. e.g. we had projects trying to register for visa applications at the USA embassy and we also had games.
 
 You can even take an existing project and make some valuable improvements to that project. (e.g. one project from one of the previous courses).
 
