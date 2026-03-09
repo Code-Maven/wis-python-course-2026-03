@@ -10,6 +10,8 @@ Course number: 20263062
 
 ## [Students](STUDENTS.md)
 
+You will be added to that page once you submitted the first assignment.
+
 ## Lecturer
 
 * [Gábor Szabó](https://szabgab.com/)
