@@ -2,13 +2,31 @@
 
 * Self introduction
 * Overview of the course
+* Interacting with a computer
+    * Excel
+    * Editor and run in the terminal
+    * Show a bit of the Iris project in Jupyter notebook
+    * Use Chat GPT with various question:
+        * how much is 5!
+        * what are the distribution of the letter in the following sentence? "The black cat climbed the green tree"
+        * Write a python program that will generate the distribution of letters in a text
+        * The last one we asked twice and we saw that we got back two different implementations.
+    * Asked the co-pilot to write a program to calculate the are and the circumference of a circle.
+    * Installed VS Code on Windows (it was already connected to GitHub co-pilot)
+    * Created a new folder for our project files. Open it in VS Code. Wrote the `print("Hello World!")` program
+    * Installed `python` from https://www.python.org/ (actually it first installed an "istaller" which asked a few questions and installed python.) For me it worked immediatly but you might need to restart VS Code.
 * Programming
     * The language: [Python](https://www.python.org/)
-    * 3rd party libraries on [PyPI](https://pypi.org/) e.g. [Biopython](https://biopython.org/).
+    * 3rd party libraries on [PyPI](https://pypi.org/) has 784,808 projects e.g. [Biopython](https://biopython.org/).
     * On GitHub
 * Version control
 * [GitHub](https://github.com/)
 * GitHub pages
+
+* Some AI tools:
+    * [ChatGPT](https://chatgpt.com/)
+    * [GitHub co-pilot](https://github.com/features/copilot#pricing)
+    * [Codex of OpenAI](https://openai.com/codex/)
 
 ### Assignment (day 1)
 
