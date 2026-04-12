@@ -28,7 +28,7 @@ You will be added to that page once you submitted the first assignment.
 
 ### Schedule
 
-* [Day 1](#Day-1) 2026.04.12 9:15-12:00
+* [Day 1](DAYS.md#Day-1) 2026.04.12 9:15-12:00
 * [Day 2](#Day-2) 2026.04.19 9:15-12:00
 * [Day 3](#Day-3) 2026.04.26 9:15-12:00
 * [Day 4](#Day-4) 2026.05.03 9:15-12:00

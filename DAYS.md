@@ -41,4 +41,5 @@
 Once they are ready open an issue on the GitHub repository of the course. The title of the issue should contain your full name and name of the assignment e.g. "Day1 by Foo Bar",
 in case your name is Foo Bar. In the issue include the link to the site, the link to the repository of the site, and the link to the repository of the assignment.
 
+Dead-line: 2026.04.19 20:00
 
