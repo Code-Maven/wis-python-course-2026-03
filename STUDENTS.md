@@ -2,6 +2,7 @@
 
 | Home page | Repo | Assignments | Lab     | Project |
 | --------- | ---- | ----------- | ------- | ------- |
+| [Gali Sued](https://galisued.github.io/)                | [repo](https://github.com/galisued/galisued.github.io)                     | [repo](https://github.com/galisued/python-course-assignments) |  |  |
 | [Noa Sharvit](https://noasharvit1.github.io/)                | [repo](https://github.com/noasharvit1/noasharvit1.github.io)                     | [repo](https://github.com/noasharvit1/python_course_assignments) |  |  |
 | [Ofek Edlstein](https://ofekedlsteingal.github.io/)                | [repo](https://github.com/ofekedlsteingal/ofekedlsteingal.github.io)                     | [repo](https://github.com/ofekedlsteingal/python-course-assignments) |  |  |
 | [Ofir Aflalo](https://ofiraflalo.github.io/)                | [repo](https://github.com/ofiraflalo/ofiraflalo.github.io)                     | [repo](https://github.com/ofiraflalo/python-course-assignments) |  |  |
