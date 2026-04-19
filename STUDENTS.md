@@ -6,6 +6,7 @@
 | [Dar Gliksberg](https://dargliks.github.io/)         | [repo](https://github.com/dargliks/dargliks.github.io)                       | [repo](https://github.com/dargliks/python-course-assignments) |  |  |
 | [Eitan Shany](https://eitanshany.github.io/)         | [repo](https://github.com/EitanShany/EitanShany.github.io)                   | [repo](https://github.com/EitanShany/python-course-assignments) |  |  |
 | [Gali Sued](https://galisued.github.io/)             | [repo](https://github.com/galisued/galisued.github.io)                       | [repo](https://github.com/galisued/python-course-assignments) |  |  |
+| [Irfan Shafi Malik](https://irfansmalik.github.io/)  | [repo](https://github.com/irfansmalik/irfansmalik.github.io)                 | [repo](https://github.com/irfansmalik/python-course-assignments) |  |  |
 | [Korin Butbul](https://korinbutbul.github.io/)       | [repo](https://github.com/korinbutbul/korinbutbul.github.io/)                     | [repo](https://github.com/korinbutbul/Python-course-assignments) |  |  |
 | [Noa Sharvit](https://noasharvit1.github.io/)        | [repo](https://github.com/noasharvit1/noasharvit1.github.io)                 | [repo](https://github.com/noasharvit1/python_course_assignments) |  |  |
 | [Ofek Edlstein](https://ofekedlsteingal.github.io/)  | [repo](https://github.com/ofekedlsteingal/ofekedlsteingal.github.io)         | [repo](https://github.com/ofekedlsteingal/python-course-assignments) |  |  |
