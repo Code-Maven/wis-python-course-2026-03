@@ -14,6 +14,7 @@
 | [Or Blank](https://or-blank.github.io/)              | [repo](https://github.com/Or-Blank/Or-Blank.github.io)                       | [repo](https://github.com/Or-Blank/python-course-assignments) |  |  |
 | [Paz Yail](https://pazgrego.github.io/)              | [repo](https://github.com/Pazgrego/Pazgrego.github.io)                       | [repo](https://github.com/Pazgrego/wis-python-course) |  |  |
 | [Ronny Peri Naor](https://ronnyperinaor.github.io/)  | [repo](https://github.com/RonnyPeriNaor/RonnyPeriNaor.GitHub.io)             | [repo](https://github.com/RonnyPeriNaor/Python-course-assigments) |  |  |
+| [Rotem Vazana](https://rotemvazana.github.io/)       | [repo](https://github.com/rotemvazana/rotemvazana.github.io)                 | [repo](https://github.com/rotemvazana/python-course-assignments) |  |  |
 | [Roy Yaniv](https://royaniv.github.io/)              | [repo](https://github.com/royaniv/royaniv.github.io)                         | [repo](https://github.com/royaniv/python-course-assignments) |  |  |
 | [Shir Shance](https://shirshance.github.io/)         | [repo](https://github.com/shirshance/shirshance.github.io)                   | [repo](https://github.com/shirshance/python-course-assignments) |  |  |
 | [Tal Livne](https://tallivne542.github.io/)          | [repo](https://github.com/TalLivne542/TalLivne542.github.io)                 | [repo](https://github.com/TalLivne542/python-course-assignments) |  |  |
