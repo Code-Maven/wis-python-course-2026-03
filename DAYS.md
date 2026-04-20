@@ -104,7 +104,7 @@ Verifying your environment that you can:
 Create a folder called `day02`.
 
 Come up with some (well known) scientific calculation from your field. Write a program that will get the input from the user and do that computations.
-If you need more than input value, then you can call `input` multiple times. Add a `README.md` file in which you describe the program.
+If you need more than one input value, then you can call `input` multiple times. Add a `README.md` file in which you describe the program.
 Give a sample input so it will be easier for us to check.
 
 If you used AI to do the work then also include which AI you used and what were the prompts you wrote.
