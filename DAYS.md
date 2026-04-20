@@ -14,7 +14,7 @@
     * Asked the co-pilot to write a program to calculate the are and the circumference of a circle.
     * Installed VS Code on Windows (it was already connected to GitHub co-pilot)
     * Created a new folder for our project files. Open it in VS Code. Wrote the `print("Hello World!")` program
-    * Installed `python` from https://www.python.org/ (actually it first installed an "istaller" which asked a few questions and installed python.) For me it worked immediatly but you might need to restart VS Code.
+    * Installed `python` from https://www.python.org/ (actually it first installed an "installer" which asked a few questions and installed python.) For me it worked immediately but you might need to restart VS Code.
 * Programming
     * The language: [Python](https://www.python.org/)
     * 3rd party libraries on [PyPI](https://pypi.org/) has 784,808 projects e.g. [Biopython](https://biopython.org/).
@@ -31,7 +31,7 @@
 ### Assignment (day 1)
 
 * [Watch the 1st video: Creating a website on GitHub Pages using Markdown](https://git.code-maven.com/git-maven/creating-a-website-on-github-pages-using-markdown)
-* Create a web site for yourself using GitHub pages. Remember to use the repository name `USERNAME.github.io`. Get ideas from the pages of the students in the previus courses.
+* Create a web site for yourself using GitHub pages. Remember to use the repository name `USERNAME.github.io`. Get ideas from the pages of the students in the previous courses.
 
 * [Watch the 2nd video: Using Git on Windows in VS Code](https://git.code-maven.com/git-maven/using-git-on-windows-in-vs-code).
 * Create a separate public repository for all the assignments of the course. (e.g. you can call it `python-course-assignments`)
@@ -46,4 +46,68 @@
 Once they are ready open an issue on the GitHub repository of the course. The title of the issue should contain your full name and name of the assignment e.g. "Day1 by Foo Bar", in case your name is Foo Bar. In the issue include the link to the site, the link to the repository of the site, and the link to the repository of the assignment.
 
 Dead-line: 2026.04.19 20:00
+
+## Day 2
+
+* About the assignments, how we will give feedback via GitHub.
+* How to follow a project (repository) on GitHub to get notifications.
+* The WhatsApp group we have.
+* See the list of students. Learn from the work of each other.
+* About the Projects.
+* Try to do some of the assignments without AI. That way you will learn the syntax better.
+* Review some of the already submitted assignments.
+* Should we put everything we ask the AI to put in the README. What feels to be relevant, that will be clear to others and to you a few months from now.
+* How can we know that the AI did the correct job? - How would you know that what you did is correct?
+* What are your expectation from some computation or process?
+* How can you make changes to your work done by AI? Will you tell it to start from scratch or improve the existing one? How do you know that it did not break anything already worked.
+* Writing automated tests. A general description of testing.
+
+
+* Creating a web-site:
+    * Generating the HTML page (content + layout) using AI.
+    * Creating only the content in a Markdown file and let GitHub generate the site using Jekyll.
+    * Using Jekyll templates.
+
+* Syntax of the Hello World program from day 1. Some cases of Syntax errors.
+* A few words from the students.
+* A few words about the `rectangle.py` program of day 1.
+* Review the `circle.py` program from day 1.
+    * Strings, integers, floating point numbers.
+    * Converting a string to integer `int` or to floating to using `float`.
+    * When to use floating point numbers and when to use integers?
+    * RAM vs hard-disk (or ssd)
+    * RAM - fast but temporary.
+    * hard-disk / ssd - slow but permanent storage.
+    * transistors, bits, bytes
+    * libraries (modules) such as `math`.
+    * How to see the attributes and methods of a module.
+
+* The Interactive Interpreter or Interactive Shell of Python.
+* Scaring students by `0.1 + 0.2` being 0.300000000004.
+* Using `round` to compare floating point numbers.
+
+* The source code of Python: https://github.com/python/cpython/
+* The documentation of Python: https://docs.python.org/
+
+* Functions (eg. `len()`) vs. methods (eg. `var.floor()`)
+
+Verifying your environment that you can:
+* Clone your repository form GitHub.
+* Create a Python file.
+* Run the Python program.
+* Commit your changes to a local git repository.
+* Push it out to GitHub.
+
+
+### Assignment (day 2)
+
+Create a folder called `day02`.
+
+Come up with some (well known) scientific calculation from your field. Write a program that will get the input from the user and do that computations.
+If you need more than input value, then you can call `input` multiple times. Add a `README.md` file in which you describe the program.
+Give a sample input so it will be easier for us to check.
+
+If you used AI to do the work then also include which AI you used and what were the prompts you wrote.
+
+Dead-line: 2026.04.26 20:00
 
