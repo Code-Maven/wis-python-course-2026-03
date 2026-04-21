@@ -4,6 +4,7 @@
 | --------- | ---- | ----------- | ------- | ------- |
 | [Aditya Barman](https://atomicadi.github.io/)        | [repo](https://github.com/atomicadi/atomicadi.github.io)                     | [repo](https://github.com/atomicadi/Python-Course-Assignments) |  |  |
 | [Alona Lavi](https://alonalala.github.io/)           | [repo](https://github.com/alonalala/alonalala.github.io)                     | [repo](https://github.com/alonalala/python-course-assignments) |  |  |
+| [Benny Kula](https://bennykula.github.io/)           | [repo](https://github.com/bennykula/bennykula.github.io)                     | [repo](https://github.com/bennykula/python-course-assignments) |  |  |
 | [Dar Gliksberg](https://dargliks.github.io/)         | [repo](https://github.com/dargliks/dargliks.github.io)                       | [repo](https://github.com/dargliks/python-course-assignments) |  |  |
 | [Eitan Shany](https://eitanshany.github.io/)         | [repo](https://github.com/EitanShany/EitanShany.github.io)                   | [repo](https://github.com/EitanShany/python-course-assignments) |  |  |
 | [Gali Sued](https://galisued.github.io/)             | [repo](https://github.com/galisued/galisued.github.io)                       | [repo](https://github.com/galisued/python-course-assignments) |  |  |
