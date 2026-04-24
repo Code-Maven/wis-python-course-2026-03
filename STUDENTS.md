@@ -19,6 +19,7 @@
 | [Rotem Vazana](https://rotemvazana.github.io/)       | [repo](https://github.com/rotemvazana/rotemvazana.github.io)                 | [repo](https://github.com/rotemvazana/python-course-assignments) |  |  |
 | [Roy Yaniv](https://royaniv.github.io/)              | [repo](https://github.com/royaniv/royaniv.github.io)                         | [repo](https://github.com/royaniv/python-course-assignments) |  |  |
 | [Shir Shance](https://shirshance.github.io/)         | [repo](https://github.com/shirshance/shirshance.github.io)                   | [repo](https://github.com/shirshance/python-course-assignments) |  |  |
+| [Stav Openhaimer](https://stavopen.github.io/)       | [repo](https://github.com/stavopen/stavopen.github.io)                       | [repo](https://github.com/stavopen/python-course-assignments) |  |  |
 | [Tal Livne](https://tallivne542.github.io/)          | [repo](https://github.com/TalLivne542/TalLivne542.github.io)                 | [repo](https://github.com/TalLivne542/python-course-assignments) |  |  |
 <!--
 | []()                | [repo]()                     | [repo]() |  |  |
