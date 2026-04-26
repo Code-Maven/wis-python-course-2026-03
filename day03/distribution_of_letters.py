@@ -28,5 +28,5 @@ if __name__ == "__main__":
 
     distribution, total = letter_distribution(text)
     print_distribution(distribution, total)
-else:
-    print("I am loaded as a module")
+#else:
+#    print("I am loaded as a module")
