@@ -146,5 +146,6 @@ Dead-line: 2026.04.26 20:00
 * As usual, create a `README.md` file where you describe what you did and how was your interaction with any AI you used.
 * If you use any external library (that you also had to install) then mention it in the README file.
 
+Dead-line: 2026.05.03 20:00
 
 
