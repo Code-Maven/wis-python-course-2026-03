@@ -148,4 +148,45 @@ Dead-line: 2026.04.26 20:00
 
 Dead-line: 2026.05.03 20:00
 
+## Day 4
+
+* Algorithm and syntax
+* Exercises to practice can be found [here](https://python.code-maven.com/python-programming/).
+* Virtual environments (`virtualenv`)
+* `requirements.txt` and `pip install`
+* uv
+
+* Read the source code from the files in Day 2
+* Go over data types in python. (see `day04/types.py`)
+* Algorithmic complexity O(1), O(n), O(n^2), ...
+* The cluster in Weizmann: [WEXAC](https://tiroshlab.github.io/lab-book/wexac.html)
+* Using the right module (fast, correct)
+* Levenshtein distance
+* Writing the code to be able to run in parallel.
+* Cloud computing e.g. [Linode](https://www.linode.com/)
+
+### Assignment (day 4)
+
+* Pick 2 (or more) students (preferably that you don't know).
+  * Look at their assignment repository.
+  * Clone their repository to your computer and try to run their projects from day 2 and/or day 3.
+  * Open an issue on the repository of their assignment with any issues you encounter. e.g. you don't know how to run the application and you need clarification. There is a file that is unclear what it is doing there (e.g. `__pycache__`)
+  * If you don't find any problems, suggest a feature (see the next part of the assignment).
+  * When picking a student select one who does NOT yet have 2 issues. This way everyone will get at least 2 issues.
+  * You can use AI to review the code, but don't overwhelm the other person with long text from the AI.
+
+* Once you received such an issue, react to it.
+  * If needed, ask for clarification in the issue.
+  * You might have some back and forth between the two of you.
+  * When you feel you have fulfilled the request (or decided you don't want to do that) close the issue.
+
+* Copy your solution from day03 and extend it with some feature. It is up to you what kind of a feature you'd like to add, but make it interesting.
+  * If you used 3rd party libraries create a `requirements.txt` with their names.
+
+* Create a folder called `day04`.
+* Add README.md with the usual explanations and your interaction with AI.
+
+* Open an issue on our repository with a title `day04 Your Name`. Include a link to your assignments repository and to the issues you opened.
+
+Dead-line: 2026.05.10 20:00
 
