@@ -190,3 +190,15 @@ Dead-line: 2026.05.03 20:00
 
 Dead-line: 2026.05.10 20:00
 
+## Day 5
+
+* The Pillow library (PIL)
+* Data structures for images
+* Opening an image from the command line
+* Image size and properties
+* Loops
+* CSV and text files
+* Data structures with AI
+* Reading and analyzing text files (including FASTA files)
+
+
