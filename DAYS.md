@@ -201,4 +201,28 @@ Dead-line: 2026.05.10 20:00
 * Data structures with AI
 * Reading and analyzing text files (including FASTA files)
 
+* Use AI to write example to
+    * Download images
+    * Open images
+    * Create excel file
+    * CSV file
+    * Excel file
+    * YAML file
+    * JSON file
+    * INI file
+
+### Assignment (day 5)
+
+Find one or more interesting files in the lab (current or previous). Come up with some interesting analyzis for the data
+and implement it. The input file(s) can be Excel, CSV, an image, FASTA, etc. Basically any format. Same with the output.
+It might be a serious of numbers or a graph. etc.
+
+Find something that is a useful calculation.
+
+If the data in the file is private then create a copy of the file and replace the data with fake (but reasoble) values.
+In the `day05` folder provide the input files, the code that runs it and also provide some tests that verify the program.
+Add the usual `README.md` file and if necessary the `requirements.txt`.
+
+
+Dead-line: 2026.05.17 20:00
 
