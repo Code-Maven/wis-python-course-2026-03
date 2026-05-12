@@ -99,9 +99,9 @@ Once you are ready, open an issue on our repository linking to you project to ge
 
 Once the project is approved you will implement it in the same repository. Open a new issue when you'd like the project to be graded.
 
-Project proposal dead-line:
+Project proposal dead-line: See the [DAYS](DAYS.md) file.
 
-Project submission dead-line:
+Project submission dead-line: See the [DAYS](DAYS.md) file.
 
 ### Expected workload
 

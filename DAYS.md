@@ -226,3 +226,11 @@ Add the usual `README.md` file and if necessary the `requirements.txt`.
 
 Dead-line: 2026.05.17 20:00
 
+## Project proposal
+
+For details see the the main README file.
+
+Dead-line: 2026.05.31 20:00
+
+
+
