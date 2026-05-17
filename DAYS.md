@@ -233,4 +233,15 @@ For details see the the main README file.
 Dead-line: 2026.05.31 20:00
 
 
+## Day 6
+
+* Demo by Liron
+* [Scientific Python](https://python.code-maven.com/python-science/)
+* API
+* NCBI
+* Open Weather Map
+* Writing with copilot in VS Code
+* copilot in GitHub
+* Github Actions / Workflows
+* copilot CLI
 
