@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-Search NCBI Nucleotide for a term, then run BLAST for each sequence and
-report how many alignments were found.
+Search NCBI Nucleotide for a term, run BLAST for each sequence, then take the
+top 3 sequences with the most alignments and look up their PubMed references.
 
 Requires Biopython:
     pip install biopython
 
 Example:
-    python ncbi_blast_alignment_count.py "influenza a virus hemagglutinin" --email you@example.com --max-seqs 3
+    python ncbi_blast_alignment_count.py "influenza a virus hemagglutinin" --email you@example.com --max-seqs 10
 """
 
 from __future__ import annotations
@@ -24,7 +24,8 @@ from Bio.Blast import NCBIWWW, NCBIXML
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
-            "Search NCBI Nucleotide by term and count BLAST alignments for each result."
+            "Search NCBI Nucleotide by term, count BLAST alignments, then report "
+            "PubMed references for the top N sequences by alignment count."
         )
     )
     parser.add_argument("term", help="Search term for the NCBI nucleotide database")
@@ -36,8 +37,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--max-seqs",
         type=int,
+        default=10,
+        help="Maximum number of sequences to fetch from the search results (default: 10)",
+    )
+    parser.add_argument(
+        "--top-n",
+        type=int,
         default=3,
-        help="Maximum number of sequences to fetch from the search results (default: 3)",
+        help="Number of top sequences (by alignment count) to look up in PubMed (default: 3)",
     )
     parser.add_argument(
         "--api-key",
@@ -92,11 +99,51 @@ def count_alignments(record: SeqIO.SeqRecord, blast_db: str) -> int:
     return len(blast_record.alignments)
 
 
+def fetch_pubmed_references(ncbi_id: str) -> list[dict[str, str]]:
+    """Return PubMed articles linked to the given NCBI nucleotide ID.
+
+    Each entry in the returned list is a dict with keys 'title' and 'url'.
+    """
+    # elink finds cross-database links (nucleotide -> pubmed)
+    link_handle = Entrez.elink(dbfrom="nucleotide", db="pubmed", id=ncbi_id)
+    link_results = Entrez.read(link_handle)
+    link_handle.close()
+
+    pmids: list[str] = []
+    for link_set in link_results:
+        for db_link in link_set.get("LinkSetDb", []):
+            if db_link.get("DbTo") == "pubmed":
+                pmids.extend(link["Id"] for link in db_link.get("Link", []))
+
+    if not pmids:
+        return []
+
+    # efetch retrieves article metadata in XML format
+    fetch_handle = Entrez.efetch(db="pubmed", id=",".join(pmids), rettype="xml", retmode="xml")
+    articles = Entrez.read(fetch_handle)
+    fetch_handle.close()
+
+    references: list[dict[str, str]] = []
+    for article in articles.get("PubmedArticle", []):
+        medline = article.get("MedlineCitation", {})
+        article_data = medline.get("Article", {})
+        title = str(article_data.get("ArticleTitle", "")).strip()
+        pmid = str(medline.get("PMID", "")).strip()
+        url = f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/" if pmid else ""
+        references.append({"title": title, "url": url})
+
+    return references
+
+
 def main() -> None:
     args = parse_args()
 
     if args.max_seqs <= 0:
         print("--max-seqs must be greater than 0", file=sys.stderr)
+        sys.exit(2)
+
+    if args.top_n <= 0:
+        print("--top-n must be greater than 0", file=sys.stderr)
         sys.exit(2)
 
     # Entrez requires an email address to identify who is making the request
@@ -117,11 +164,33 @@ def main() -> None:
             print("No sequence data returned by NCBI.")
             return
 
-        print(f"Running BLAST for {len(records)} sequence(s)...\n")
-        for index, record in enumerate(records, start=1):
-            print(f"[{index}/{len(records)}] {record.id}: submitting BLAST...")
+        # Pair each record with its NCBI ID so we can use elink later
+        id_record_pairs = list(zip(ids, records))
+
+        print(f"Running BLAST for {len(id_record_pairs)} sequence(s)...\n")
+        results: list[tuple[int, str, SeqIO.SeqRecord]] = []
+        for index, (ncbi_id, record) in enumerate(id_record_pairs, start=1):
+            print(f"[{index}/{len(id_record_pairs)}] {record.id}: submitting BLAST...")
             alignment_count = count_alignments(record, args.blast_db)
             print(f"  {record.id}\talignments: {alignment_count}")
+            results.append((alignment_count, ncbi_id, record))
+
+        # Sort descending by alignment count and take the top args.top_n sequences
+        results.sort(key=lambda x: x[0], reverse=True)
+        top_results = results[:args.top_n]
+
+        print(f"\n--- Top {args.top_n} sequences by alignment count ---")
+        for rank, (alignment_count, ncbi_id, record) in enumerate(top_results, start=1):
+            print(f"\n#{rank}  {record.id}  (alignments: {alignment_count})")
+            print(f"  Fetching PubMed references for NCBI ID {ncbi_id}...")
+            references = fetch_pubmed_references(ncbi_id)
+            if references:
+                print(f"  Found {len(references)} PubMed reference(s):")
+                for ref in references:
+                    print(f"    Title: {ref['title']}")
+                    print(f"    Link:  {ref['url']}")
+            else:
+                print("  No PubMed references found.")
 
     except HTTPError as exc:
         print(f"Network error: {exc}", file=sys.stderr)
