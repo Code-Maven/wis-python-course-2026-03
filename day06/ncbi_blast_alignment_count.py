@@ -21,14 +21,11 @@ from Bio import Entrez, SeqIO
 from Bio.Blast import NCBIWWW, NCBIXML
 
 
-TOP_N = 3  # number of top-alignment sequences to check in PubMed
-
-
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
             "Search NCBI Nucleotide by term, count BLAST alignments, then report "
-            f"PubMed references for the top {TOP_N} sequences."
+            "PubMed references for the top N sequences by alignment count."
         )
     )
     parser.add_argument("term", help="Search term for the NCBI nucleotide database")
@@ -42,6 +39,12 @@ def parse_args() -> argparse.Namespace:
         type=int,
         default=10,
         help="Maximum number of sequences to fetch from the search results (default: 10)",
+    )
+    parser.add_argument(
+        "--top-n",
+        type=int,
+        default=3,
+        help="Number of top sequences (by alignment count) to look up in PubMed (default: 3)",
     )
     parser.add_argument(
         "--api-key",
@@ -139,6 +142,10 @@ def main() -> None:
         print("--max-seqs must be greater than 0", file=sys.stderr)
         sys.exit(2)
 
+    if args.top_n <= 0:
+        print("--top-n must be greater than 0", file=sys.stderr)
+        sys.exit(2)
+
     # Entrez requires an email address to identify who is making the request
     Entrez.email = args.email
     if args.api_key:
@@ -168,11 +175,11 @@ def main() -> None:
             print(f"  {record.id}\talignments: {alignment_count}")
             results.append((alignment_count, ncbi_id, record))
 
-        # Sort descending by alignment count and take the top TOP_N sequences
+        # Sort descending by alignment count and take the top args.top_n sequences
         results.sort(key=lambda x: x[0], reverse=True)
-        top_results = results[:TOP_N]
+        top_results = results[:args.top_n]
 
-        print(f"\n--- Top {TOP_N} sequences by alignment count ---")
+        print(f"\n--- Top {args.top_n} sequences by alignment count ---")
         for rank, (alignment_count, ncbi_id, record) in enumerate(top_results, start=1):
             print(f"\n#{rank}  {record.id}  (alignments: {alignment_count})")
             print(f"  Fetching PubMed references for NCBI ID {ncbi_id}...")
