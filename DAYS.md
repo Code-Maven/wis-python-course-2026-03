@@ -245,3 +245,17 @@ Dead-line: 2026.05.31 20:00
 * Github Actions / Workflows
 * copilot CLI
 
+### Assignment (day 6)
+
+Find a web-based database similar to the NCBI and the Open Weather map, preferable in the field of your studies.
+Write a program that downloads some data from that web site and then does some processing on the data.
+
+As always, include the requirements.txt file if necessary, in the README add your interaction with AI,
+a few sentences about the type of data the site offers.
+
+If you can't find in your field of studies, then try some other scientific database. Worst case use NCBI,
+but don't use the Nucleotide database. We already have an example with that.
+
+Dead-line: 2026.05.24 20:00
+
+
