@@ -86,6 +86,34 @@ def filter_solar_candidates(df: pd.DataFrame, min_bg: float, max_bg: float) -> p
     return candidates.sort_values(by="Formation_Energy")
 
 
+def visualize_candidates(candidates: pd.DataFrame, elements: list[str], output: str | None) -> None:
+    """Create and show/save a scatter plot for filtered material candidates."""
+    print("\nGenerating plot...")
+    plt.scatter(
+        candidates['Band_Gap_eV'],
+        candidates['Formation_Energy'],
+        c=candidates['Energy_Above_Hull'],
+        cmap='viridis',
+        alpha=0.8,
+        edgecolors='w',
+        s=100
+    )
+
+    plt.colorbar(label='Energy Above Hull (eV/atom) - Lower is more stable')
+    plt.title(f"Material Screener: {'-'.join(elements)} Compounds", fontsize=14)
+    plt.xlabel('Band Gap (eV)', fontsize=12)
+    plt.ylabel('Formation Energy (eV/atom)', fontsize=12)
+    plt.grid(True, linestyle='--', alpha=0.6)
+
+    if output:
+        output_path = Path(output)
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        plt.savefig(output_path, bbox_inches="tight")
+        print(f"Saved graph: {output_path}")
+    else:
+        plt.show()
+
+
 def main() -> None:
     args = parse_args()
 
@@ -103,32 +131,8 @@ def main() -> None:
         print("Top 5 candidates:")
         print(candidates[['Formula', 'Band_Gap_eV', 'Formation_Energy']].head())
 
-    # 3. Visualize
-    print("\nGenerating plot...")
-    plt.scatter(
-        candidates['Band_Gap_eV'], 
-        candidates['Formation_Energy'], 
-        c=candidates['Energy_Above_Hull'],
-        cmap='viridis', 
-        alpha=0.8, 
-        edgecolors='w', 
-        s=100
-    )
-    
-    plt.colorbar(label='Energy Above Hull (eV/atom) - Lower is more stable')
-    plt.title(f"Material Screener: {'-'.join(args.elements)} Compounds", fontsize=14)
-    plt.xlabel('Band Gap (eV)', fontsize=12)
-    plt.ylabel('Formation Energy (eV/atom)', fontsize=12)
-    plt.grid(True, linestyle='--', alpha=0.6)
-
-    # 4. Output
-    if args.output:
-        output_path = Path(args.output)
-        output_path.parent.mkdir(parents=True, exist_ok=True)
-        plt.savefig(output_path, bbox_inches="tight")
-        print(f"Saved graph: {output_path}")
-    else:
-        plt.show()
+    # 3. Visualize + output
+    visualize_candidates(candidates, args.elements, args.output)
 
 
 if __name__ == "__main__":
