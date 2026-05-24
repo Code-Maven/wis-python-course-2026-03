@@ -86,6 +86,14 @@ def filter_solar_candidates(df: pd.DataFrame, min_bg: float, max_bg: float) -> p
     return candidates.sort_values(by="Formation_Energy")
 
 
+def generate_report(candidates: pd.DataFrame) -> None:
+    """Print a summary report of the filtered material candidates."""
+    print(f"\nFound {len(candidates)} promising candidates!")
+    if not candidates.empty:
+        print("Top 5 candidates:")
+        print(candidates[['Formula', 'Band_Gap_eV', 'Formation_Energy']].head())
+
+
 def visualize_candidates(candidates: pd.DataFrame, elements: list[str], output: str | None) -> None:
     """Create and show/save a scatter plot for filtered material candidates."""
     print("\nGenerating plot...")
@@ -126,12 +134,10 @@ def main() -> None:
     # 2. Process
     candidates = filter_solar_candidates(df, args.min_bg, args.max_bg)
     
-    print(f"\nFound {len(candidates)} promising candidates!")
-    if not candidates.empty:
-        print("Top 5 candidates:")
-        print(candidates[['Formula', 'Band_Gap_eV', 'Formation_Energy']].head())
+    # 3. Report
+    generate_report(candidates)
 
-    # 3. Visualize + output
+    # 4. Visualize + output
     visualize_candidates(candidates, args.elements, args.output)
 
 
