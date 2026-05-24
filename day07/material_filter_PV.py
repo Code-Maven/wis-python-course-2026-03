@@ -2,11 +2,17 @@
 from __future__ import annotations
 
 import argparse
+import os
 import sys
 from pathlib import Path
+
 import pandas as pd
 import matplotlib.pyplot as plt
+from dotenv import load_dotenv
 from mp_api.client import MPRester
+
+# Load environment variables from .env file
+load_dotenv()
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
@@ -14,8 +20,8 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--api-key",
-        required=True,
-        help="Your Materials Project API key (required)",
+        default=os.environ.get("MP_API_KEY"),
+        help="Your Materials Project API key (can also be set in .env as MP_API_KEY)",
     )
     parser.add_argument(
         "--elements",
@@ -124,6 +130,10 @@ def visualize_candidates(candidates: pd.DataFrame, elements: list[str], output: 
 
 def main() -> None:
     args = parse_args()
+
+    if not args.api_key:
+        print("Error: API key is required. Provide it via --api-key or set MP_API_KEY in a .env file.", file=sys.stderr)
+        sys.exit(1)
 
     # 1. Fetch
     df = fetch_materials_data(args.api_key, args.elements)
