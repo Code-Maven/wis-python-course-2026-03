@@ -258,4 +258,21 @@ but don't use the Nucleotide database. We already have an example with that.
 
 Dead-line: 2026.05.24 20:00
 
+## Day 7
+
+### Assignment (day 7)
+
+Write 2-3 sentences of what are you (still) missing from this course. (You can write more if you feel so.)
+Think about:
+* What did you expect from this course?
+* How did that expectation change, if at all?
+* What are the things you feel you don't understand?
+* What can we cover in the remaining sessions that will help you.
+
+This time, in order to allow you to write anything you want, we'll make this a private assignmeng.
+You submit it by sending and email to me: `Gabor Szabo <szabgab@gmail.com>`. The subject line should
+be the same as you would use for the issue if it was submitted that way.
+
+
+Dead-line: 2026.06.01 20:00
 
