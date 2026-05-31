@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aetheris // Materials Screening Dashboard</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Plotly.js CDN for interactive visualizations -->
+    <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>
+    
+    <!-- Custom Web App Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <!-- Aura Radial Glow Effects -->
+    <div class="aura-glow aura-purple"></div>
+    <div class="aura-glow aura-blue"></div>
+    
+    <div class="app-container">
+        <!-- Sidebar Controls Panel -->
+        <aside class="sidebar-panel">
+            <div class="brand-header">
+                <div class="logo-orb">
+                    <i class="fa-solid fa-atom atom-spin"></i>
+                </div>
+                <div class="brand-text">
+                    <h1>AETHERIS</h1>
+                    <span>MATERIALS SCREENER</span>
+                </div>
+            </div>
+            
+            <div class="sidebar-content">
+                <form id="search-form">
+                    <!-- Element Search Section -->
+                    <div class="control-group">
+                        <label for="elements-input" class="control-label">
+                            <i class="fa-solid fa-wand-magic-sparkles text-accent"></i> Chemical Elements
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="text" id="elements-input" placeholder="e.g. Ti O, Li Fe P O, Cs Pb I" autocomplete="off" required>
+                            <span class="input-focus-line"></span>
+                        </div>
+                        <p class="input-hint">Enter symbols space/comma-separated, or as chemical formulas (e.g. TiO2, LiFePO4).</p>
+                        
+                        <!-- Quick presets -->
+                        <div class="preset-container">
+                            <span class="preset-label">Presets:</span>
+                            <div class="preset-chips">
+                                <button type="button" class="preset-chip" onclick="setPreset('Ti O')">TiO₂ Compounds</button>
+                                <button type="button" class="preset-chip" onclick="setPreset('Li Fe P O')">LFP Battery</button>
+                                <button type="button" class="preset-chip" onclick="setPreset('Cs Pb I')">Perovskites</button>
+                                <button type="button" class="preset-chip" onclick="setPreset('Si')">Silicon Alloys</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Band Gap Ranges -->
+                    <div class="control-group">
+                        <label class="control-label">
+                            <i class="fa-solid fa-bolt text-accent"></i> Band Gap Target (eV)
+                        </label>
+                        <div class="range-sliders-wrapper">
+                            <div class="range-inputs">
+                                <div class="number-input-box">
+                                    <span class="input-prefix">Min</span>
+                                    <input type="number" id="min-bg-input" value="1.5" step="0.1" min="0.0" max="10.0">
+                                </div>
+                                <div class="number-input-box">
+                                    <span class="input-prefix">Max</span>
+                                    <input type="number" id="max-bg-input" value="3.0" step="0.1" min="0.0" max="10.0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Energy Above Hull Slider -->
+                    <div class="control-group">
+                        <div class="label-with-value">
+                            <label for="hull-input" class="control-label">
+                                <i class="fa-solid fa-anchor text-accent"></i> Max Energy Above Hull
+                            </label>
+                            <span id="hull-value-display" class="badge-value">0.05 eV</span>
+                        </div>
+                        <input type="range" id="hull-input" min="0.0" max="0.5" step="0.01" value="0.05" class="slider-input">
+                        <p class="input-hint">Lower energy above hull means higher thermodynamic stability (≤ 0.05 eV is highly stable).</p>
+                    </div>
+                    
+                    <!-- Filters & Settings -->
+                    <div class="control-group checkbox-group">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="stable-only-input" checked>
+                            <span class="toggle-slider"></span>
+                            <span class="toggle-label">Thermodynamically Stable Only (FE &lt; 0)</span>
+                        </label>
+                    </div>
+                    
+                    <!-- Action Submit -->
+                    <button type="submit" id="submit-btn" class="btn-glow-submit">
+                        <span class="btn-text">Query Database</span>
+                        <i class="fa-solid fa-magnifying-glass btn-icon"></i>
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Connection Status -->
+            <div class="sidebar-footer">
+                <div class="connection-status {% if has_api_key %}connected{% else %}disconnected{% endif %}">
+                    <span class="status-indicator"></span>
+                    <span class="status-text">
+                        {% if has_api_key %}
+                            Materials Project API Connected
+                        {% else %}
+                            API Key Missing (Check .env)
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Dashboard Workspace -->
+        <main class="main-workspace">
+            <!-- Welcome View (Default before search) -->
+            <div id="welcome-view" class="workspace-view active">
+                <div class="welcome-card">
+                    <div class="welcome-orb">
+                        <i class="fa-solid fa-atom"></i>
+                    </div>
+                    <h2>Quantum Materials Screener</h2>
+                    <p>Enter chemical elements in the left panel to fetch crystal properties, run thermodynamic screening filters, and generate rich interactive scatter plots and data reports from the Materials Project API.</p>
+                    <div class="welcome-features">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-database text-blue"></i>
+                            <h4>MP Integration</h4>
+                            <p>Direct live querying of 150k+ structural materials.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-chart-line text-purple"></i>
+                            <h4>Interactive Plots</h4>
+                            <p>Scatter energy vs band gaps with vector colors.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-file-export text-emerald"></i>
+                            <h4>Data Export</h4>
+                            <p>Instantly export filtered candidates lists to CSV/JSON.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Loading Spinner State -->
+            <div id="loading-view" class="workspace-view">
+                <div class="loading-card">
+                    <div class="quantum-loader">
+                        <div class="orbit orbit-1"></div>
+                        <div class="orbit orbit-2"></div>
+                        <div class="orbit orbit-3"></div>
+                        <div class="nucleus"></div>
+                    </div>
+                    <h3>Connecting to Materials Project</h3>
+                    <p id="loading-message">Fetching crystal structures and electronic properties...</p>
+                </div>
+            </div>
+            
+            <!-- Error State -->
+            <div id="error-view" class="workspace-view">
+                <div class="error-card">
+                    <div class="error-icon">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                    </div>
+                    <h3>Query Failure</h3>
+                    <p id="error-message">Unable to complete search request.</p>
+                    <button type="button" class="btn-secondary" onclick="resetToWelcome()">
+                        <i class="fa-solid fa-arrow-left"></i> Modify Request
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Dashboard Results View -->
+            <div id="results-view" class="workspace-view">
+                <!-- Insight Cards Bar -->
+                <div class="stats-grid">
+                    <!-- Card 1 -->
+                    <div class="stat-card">
+                        <div class="stat-icon bg-blue-trans">
+                            <i class="fa-solid fa-database text-blue"></i>
+                        </div>
+                        <div class="stat-details">
+                            <span class="stat-title">Database Hits</span>
+                            <span id="stat-total-hits" class="stat-value">0</span>
+                            <span class="stat-sub">Compounds matched</span>
+                        </div>
+                        <div class="card-glow border-blue"></div>
+                    </div>
+                    
+                    <!-- Card 2 -->
+                    <div class="stat-card">
+                        <div class="stat-icon bg-purple-trans">
+                            <i class="fa-solid fa-filter text-purple"></i>
+                        </div>
+                        <div class="stat-details">
+                            <span class="stat-title">Stable Candidates</span>
+                            <span id="stat-candidates" class="stat-value">0</span>
+                            <span class="stat-sub">Passed active filters</span>
+                        </div>
+                        <div class="card-glow border-purple"></div>
+                    </div>
+                    
+                    <!-- Card 3 -->
+                    <div class="stat-card">
+                        <div class="stat-icon bg-emerald-trans">
+                            <i class="fa-solid fa-temperature-low text-emerald"></i>
+                        </div>
+                        <div class="stat-details">
+                            <span class="stat-title">Best Formation E.</span>
+                            <span id="stat-best-fe" class="stat-value">0.0</span>
+                            <span class="stat-sub">eV/atom (most stable)</span>
+                        </div>
+                        <div class="card-glow border-emerald"></div>
+                    </div>
+                    
+                    <!-- Card 4 -->
+                    <div class="stat-card">
+                        <div class="stat-icon bg-orange-trans">
+                            <i class="fa-solid fa-bolt text-orange"></i>
+                        </div>
+                        <div class="stat-details">
+                            <span class="stat-title">Avg Candidate Eg</span>
+                            <span id="stat-avg-eg" class="stat-value">0.0</span>
+                            <span class="stat-sub">Electron-volt (eV)</span>
+                        </div>
+                        <div class="card-glow border-orange"></div>
+                    </div>
+                </div>
+                
+                <!-- Main Dashboard Rows -->
+                <div class="dashboard-grid">
+                    <!-- Visualization Panel -->
+                    <div class="dashboard-card main-chart-card">
+                        <div class="card-header">
+                            <div class="header-title">
+                                <i class="fa-solid fa-chart-line text-blue"></i>
+                                <h3>Band Gap vs Formation Energy Map</h3>
+                            </div>
+                            <div class="header-actions">
+                                <div class="toggle-buttons-group">
+                                    <button class="toggle-btn active" id="btn-toggle-all" onclick="filterPlotData(false)">Show All Data</button>
+                                    <button class="toggle-btn" id="btn-toggle-stable" onclick="filterPlotData(true)">Screened Candidates</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body plot-body">
+                            <div id="plotly-scatter-chart" class="plotly-container"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Crystal System Structure breakdown -->
+                    <div class="dashboard-card side-info-card">
+                        <div class="card-header">
+                            <div class="header-title">
+                                <i class="fa-solid fa-cubes text-purple"></i>
+                                <h3>Crystal Systems</h3>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p class="chart-subtitle">Structure phases distribution of retrieved database items.</p>
+                            <div id="crystal-systems-distribution" class="systems-list-container">
+                                <!-- Generated Dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Screened Candidates Table Card -->
+                    <div class="dashboard-card full-table-card">
+                        <div class="card-header">
+                            <div class="header-title">
+                                <i class="fa-solid fa-table-list text-emerald"></i>
+                                <h3>Screened Materials Candidates <span id="candidate-count-pill" class="badge-pill">0</span></h3>
+                            </div>
+                            <div class="header-actions table-actions">
+                                <div class="search-table-wrapper">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                    <input type="text" id="table-search" placeholder="Search by chemical formula or ID..." onkeyup="searchTable()">
+                                </div>
+                                <button type="button" class="btn-download" onclick="downloadCSV()">
+                                    <i class="fa-solid fa-file-csv"></i> Export CSV
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body table-responsive">
+                            <table class="premium-table" id="candidates-table">
+                                <thead>
+                                    <tr>
+                                        <th onclick="sortTable(0)">Material ID <i class="fa-solid fa-sort"></i></th>
+                                        <th onclick="sortTable(1)">Formula <i class="fa-solid fa-sort"></i></th>
+                                        <th onclick="sortTable(2)">Band Gap (eV) <i class="fa-solid fa-sort"></i></th>
+                                        <th onclick="sortTable(3)">Formation Energy (eV/atom) <i class="fa-solid fa-sort"></i></th>
+                                        <th onclick="sortTable(4)">Energy Above Hull (eV/atom) <i class="fa-solid fa-sort"></i></th>
+                                        <th onclick="sortTable(5)">Crystal System <i class="fa-solid fa-sort"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-body">
+                                    <!-- Populated Dynamically -->
+                                </tbody>
+                            </table>
+                            
+                            <!-- No Results row for table search -->
+                            <div id="no-table-results" class="no-results-alert hidden">
+                                <i class="fa-solid fa-magnifying-glass-minus"></i> No matching materials found in the candidate set.
+                            </div>
+                            
+                            <!-- Pagination -->
+                            <div class="pagination-footer">
+                                <div class="pagination-info">
+                                    Showing <span id="pagination-start">0</span> - <span id="pagination-end">0</span> of <span id="pagination-total">0</span> candidates
+                                </div>
+                                <div class="pagination-controls">
+                                    <button class="page-btn" id="btn-prev-page" onclick="prevPage()"><i class="fa-solid fa-chevron-left"></i></button>
+                                    <div id="pagination-numbers" class="page-numbers-container">
+                                        <!-- Generated Dynamically -->
+                                    </div>
+                                    <button class="page-btn" id="btn-next-page" onclick="nextPage()"><i class="fa-solid fa-chevron-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Core JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
