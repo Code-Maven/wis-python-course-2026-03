@@ -133,4 +133,19 @@ and how to design tests that make bugs easier to locate).
 
 ----
 
+* What did you expect from this course?
+* => Know the basics to intermediate level of Pyhton language.
+
+* How did that expectation change, if at all?
+* => I really like the use of GUI usage. I have some of my old codes and now I want to implement GUI on them.
+
+
+* What are the things you feel you don't understand?
+* => Till now, I have no issue on the understanding for the corse.
+
+
+* What can we cover in the remaining sessions that will help you.
+* => Though I  have chosen a algorithmic project proposal, but in the course if there are any proper python algorithm calculation (kind of "Hartree-Fock code in python”  in my field), it will be great!
+
+----
 
