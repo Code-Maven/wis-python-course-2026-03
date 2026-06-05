@@ -24,6 +24,8 @@ https://pypi.org/project/mendeleev/
 
 
 * Machine learning
+    * iris
+    * breast-cancer
 * How does AI (LLM) work?
 * How to manage larger codebases?
 * How to handle complex package dependencies?
