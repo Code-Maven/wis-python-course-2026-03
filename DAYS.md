@@ -311,4 +311,34 @@ Dead-line: 2026.06.07 20:00
 
 Dead-line: 2026.06.21 20:00
 
+## Day 9
+
+* Debugging, logging, effective testing.
+* Review of some of the Assignments from Day 6.
+* Quick overview of regular expressions.
+* Rotem Vazana gave a presentation (in Hebrew)
+* Machine learning
+    * iris
+
+* The prompt I used in ChatGPT to get some ideas what to show:
+
+"I would like to learn how to use machine learning in Python for biology. Could you recommend some good data sets I could start with?"
+
+It should be improved by also asking it to include links to how to download each dataset.
+
+
+* After the lecture I realized I the code from the Iris example was lost so I tried it again, this time with slightly better prompts.
+You can see them in the README file in the `day09/iris` folder. You can also see the Jupyter notebook file there.
+
+### Assignment (day 9)
+
+Pick a dataset that you would like to analyze. You can use one from your lab. You can ask ChatGPT to recommend one.
+You could download one from [Kaggle](https://www.kaggle.com/) or from any other place you find and like.
+
+Create a prediction base on the data.
+
+Add a README and make it easy for us to rerun the example providing clear instruction how to download the data.
+Include your prompts.
+
+Dead-line: 2026.06.14 20:00
 
