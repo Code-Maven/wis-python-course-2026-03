@@ -342,3 +342,10 @@ Include your prompts.
 
 Dead-line: 2026.06.14 20:00
 
+## Day 10
+
+* Machine learning
+* Went over the `iris` example in the `day09` folder.
+* Went over the `breast-cancer` example in the `day10` folder.
+
+
